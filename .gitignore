@@ -13,3 +13,7 @@ benchmarks/graphs
 
 # production environment file
 .prod.env
+
+# development folders
+pgdata/
+
