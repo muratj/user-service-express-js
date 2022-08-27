@@ -11,12 +11,7 @@ Tech stack:
   alt="NodeJS"
   width="20px"
 />
-<img
-  src="https://github.com/get-icon/geticon/raw/master/icons/express.svg"
-  alt="Express"
-  height="20px"
-  style="background-color: #000"
-/>
+<span style="font-size: 20px">Express</span>
 <img
   src="https://github.com/get-icon/geticon/raw/master/icons/postgresql.svg"
   alt="Postgresql"
