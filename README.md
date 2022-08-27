@@ -8,23 +8,23 @@ Tech stack:
 />
 <img
   src="https://github.com/get-icon/geticon/raw/master/icons/nodejs-icon.svg"
-  alt="JavaScript"
+  alt="NodeJS"
   width="20px"
 />
 <img
   src="https://github.com/get-icon/geticon/raw/master/icons/express.svg"
-  alt="JavaScript"
+  alt="Express"
   height="20px"
-  style="background-color: white"
+  style="background-color: #000"
 />
 <img
   src="https://github.com/get-icon/geticon/raw/master/icons/postgresql.svg"
-  alt="JavaScript"
+  alt="Postgresql"
   width="20px"
 />
 <img
   src="https://github.com/get-icon/geticon/raw/master/icons/docker-icon.svg"
-  alt="JavaScript"
+  alt="Docker"
   width="20px"
 />
 
