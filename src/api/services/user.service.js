@@ -1,8 +1,17 @@
 const User = require("../models/User");
 
+const repository = new User();
+
 const saveUser = async (email, password) => {
-  const repository = new User();
   return await repository.save({ email, password });
 }
 
-module.exports = saveUser;
+const findUserById = async (userId) => {
+  return await repository.findOne(userId);
+}
+
+const findAllUsers = async () => {
+  return await repository.findAll();
+}
+
+module.exports = { saveUser, findUserById, findAllUsers };

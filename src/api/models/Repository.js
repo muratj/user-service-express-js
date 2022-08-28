@@ -62,6 +62,26 @@ class Repository {
       logger.error(err);
     }
   }
+
+  async findOne(id) {
+    const queryString = `SELECT * FROM ${this.tableName} WHERE id = ${id}`;
+    try {
+      const res = await this.execute(queryString);
+      return res.rows[0];
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
+  async findAll() {
+    const queryString = `SELECT * FROM ${this.tableName}`;
+    try {
+      const res = await this.execute(queryString);
+      return res.rows;
+    } catch (err) {
+      logger.error(err);
+    }
+  }
 }
 
 module.exports = Repository;
