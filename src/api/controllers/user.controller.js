@@ -1,19 +1,21 @@
-const saveUser = require('../services/user.service');
+const userService = require('../services/user.service');
 
 const Users = require('../models/User').User;
 
-const getAllUsers = (req, res) => {
-  res.json(Users);
+const getAllUsers = async (req, res) => {
+  const users = await userService.findAllUsers();
+  res.json(users);
 }
 
-const getUserById = (req, res) => {
-  const user = Users.find(user => user.id == req.params.id);
+const getUserById = async (req, res) => {
+  const userId = req.params.id;
+  const user = await userService.findUserById(userId);
   res.json(user);
 }
 
 const createUser = async (req, res) => {
   const { email, password } = req.body;
-  const user = await saveUser(email, password);
+  const user = await userService.saveUser(email, password);
   res.json(user);
 }
 
