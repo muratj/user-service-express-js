@@ -82,6 +82,47 @@ class Repository {
       logger.error(err);
     }
   }
+
+  async update(id, payload) {
+    const keys = Object.keys(payload);
+    const values = [];
+    const setValue = [];
+    keys.forEach((key, index) => {
+      values.push(payload[key]);
+      setValue.push(`${key} = $${index + 1}`);
+    });
+    const queryString = `UPDATE ${this.tableName} SET ${setValue.join(', ')} WHERE id = ${id}`;
+    try {
+      const res = await this.execute(queryString, values);
+      const resMessage = {}
+      if (res.rowCount) {
+        resMessage.message = "Successfully updated"
+      } else {
+        resMessage.message = "Nothing to update"
+      }
+      resMessage.affectedRows = res.rowCount;
+      return resMessage;
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
+  async delete(id) {
+    const queryString = `DELETE FROM ${this.tableName} WHERE id = ${id}`;
+    try {
+      const res = await this.execute(queryString);
+      const resMessage = {}
+      if (res.rowCount) {
+        resMessage.message = "Successfully deleted"
+      } else {
+        resMessage.message = "Nothing to delete"
+      }
+      resMessage.affectedRows = res.rowCount;
+      return resMessage;
+    } catch (err) {
+      logger.error(err);
+    }
+  }
 }
 
 module.exports = Repository;

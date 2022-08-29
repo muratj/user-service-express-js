@@ -1,6 +1,10 @@
 const userService = require('../services/user.service');
 
-const Users = require('../models/User').User;
+const createUser = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await userService.saveUser(email, password);
+  res.json(user);
+}
 
 const getAllUsers = async (req, res) => {
   const users = await userService.findAllUsers();
@@ -13,14 +17,23 @@ const getUserById = async (req, res) => {
   res.json(user);
 }
 
-const createUser = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await userService.saveUser(email, password);
-  res.json(user);
+const updateUser = async (req, res) => {
+  const userId = req.params.id;
+  const payload = req.body;
+  const updatedRows = await userService.updateUserById(userId, payload);
+  res.json(updatedRows);
+}
+
+const deleteUser = async (req, res) => {
+  const userId = req.params.id;
+  const deletedRows = await userService.deleteUserById(userId);
+  res.json(deletedRows);
 }
 
 module.exports = {
   getAllUsers,
   getUserById,
-  createUser
+  createUser,
+  updateUser,
+  deleteUser
 }

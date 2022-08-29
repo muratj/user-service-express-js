@@ -14,4 +14,12 @@ const findAllUsers = async () => {
   return await repository.findAll();
 }
 
-module.exports = { saveUser, findUserById, findAllUsers };
+const updateUserById = async (userId, payload) => {
+  return await repository.update(userId, payload);
+}
+
+const deleteUserById = async (userId) => {
+  return await repository.delete(userId);
+}
+
+module.exports = { saveUser, findUserById, findAllUsers, updateUserById, deleteUserById };
