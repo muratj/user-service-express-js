@@ -65,8 +65,6 @@ Setup:
     - `sudo kill -9 <PID>` force kill the process
 1. run command `docker compose --env-file .dev.env up -d`
 
-> Need to implement function craete table if not exists, for now create your own table based on models folder
-
 ## Framework
 
 App entry file `src/index.js` constains only global level configurations and handles endpoints sending it to related route files  

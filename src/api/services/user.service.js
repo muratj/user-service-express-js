@@ -2,8 +2,8 @@ const User = require("../models/User");
 
 const repository = new User();
 
-const saveUser = async (email, password) => {
-  return await repository.save({ email, password });
+const saveUser = async (reqBody) => {
+  return await repository.save(reqBody);
 }
 
 const findUserById = async (userId) => {

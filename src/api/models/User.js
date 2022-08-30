@@ -2,6 +2,7 @@ const { Pool, Client } = require('pg');
 const Repository = require('./Repository');
 
 const db_configs = require('../../configs/db.config');
+const logger = require('../middlewares/Logger');
 
 class User extends Repository {
   constructor() {
@@ -22,6 +23,18 @@ class User extends Repository {
       dataType: 'VARCHAR(50)',
       constraints: ['NOT NULL']
     },
+    firstName: {
+      dataType: 'VARCHAR(20)',
+      constraints: ['NOT NULL']
+    },
+    lastName: {
+      dataType: 'VARCHAR(20)',
+      constraints: ['NOT NULL']
+    },
+    role: {
+      dataType: 'VARCHAR(10)',
+      constraints: ['NOT NULL', 'DEFAULT \'user\'']
+    }
   };
 }
 
