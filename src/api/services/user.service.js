@@ -1,9 +1,11 @@
 const User = require("../models/User");
+const { hashPassword } = require("../utils/common");
 
 const repository = new User();
 
-const saveUser = async (reqBody) => {
-  return await repository.save(reqBody);
+const saveUser = async (newUser) => {
+  newUser.password = await hashPassword(newUser.password);
+  return await repository.save(newUser);
 }
 
 const findUserById = async (userId) => {
