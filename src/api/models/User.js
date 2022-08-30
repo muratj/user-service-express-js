@@ -20,7 +20,7 @@ class User extends Repository {
       constraints: ['UNIQUE', 'NOT NULL']
     },
     password: {
-      dataType: 'VARCHAR(50)',
+      dataType: 'VARCHAR',
       constraints: ['NOT NULL']
     },
     firstName: {

@@ -1,17 +1,25 @@
 const User = require("../models/User");
+const { hashPassword } = require("../utils/common");
 
 const repository = new User();
 
-const saveUser = async (reqBody) => {
-  return await repository.save(reqBody);
+const saveUser = async (newUser) => {
+  newUser.password = await hashPassword(newUser.password);
+  return await repository.save(newUser);
 }
 
 const findUserById = async (userId) => {
-  return await repository.findOne(userId);
+  const user = await repository.findOne(userId);
+  delete user.password;
+  return user;
 }
 
 const findAllUsers = async () => {
-  return await repository.findAll();
+  const users = await repository.findAll();
+  users.forEach(user => {
+    delete user.password;
+  });
+  return users;
 }
 
 const updateUserById = async (userId, payload) => {
