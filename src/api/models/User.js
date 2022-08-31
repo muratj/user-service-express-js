@@ -1,8 +1,7 @@
 const { Pool, Client } = require('pg');
-const Repository = require('./Repository');
+const Repository = require('../middlewares/Repository');
 
 const db_configs = require('../../configs/db.config');
-const logger = require('../middlewares/Logger');
 
 class User extends Repository {
   constructor() {
