@@ -14,6 +14,12 @@ const findUserById = async (userId) => {
   return user;
 }
 
+const findUserByEmail = async (email) => {
+  const user = await repository.findWhere({ email: email });
+  if (!user) return false;
+  return user;
+}
+
 const findAllUsers = async () => {
   const users = await repository.findAll();
   users.forEach(user => {
@@ -30,4 +36,4 @@ const deleteUserById = async (userId) => {
   return await repository.delete(userId);
 }
 
-module.exports = { saveUser, findUserById, findAllUsers, updateUserById, deleteUserById };
+module.exports = { saveUser, findUserById, findUserByEmail, findAllUsers, updateUserById, deleteUserById };

@@ -1,4 +1,4 @@
-const logger = require("../middlewares/Logger");
+const logger = require("./Logger");
 
 class Repository {
   dbPool;
@@ -65,6 +65,21 @@ class Repository {
 
   async findOne(id) {
     const queryString = `SELECT * FROM ${this.tableName} WHERE id = ${id}`;
+    try {
+      const res = await this.execute(queryString);
+      return res.rows[0];
+    } catch (err) {
+      logger.error(err);
+    }
+  }
+
+  async findWhere(options) {
+    const searchCriteria = [];
+    const optionKeys = Object.keys(options);
+    optionKeys.forEach(key => {
+      searchCriteria.push(`${key} = '${options[key]}'`);
+    })
+    const queryString = `SELECT * FROM ${this.tableName} WHERE ${searchCriteria.join(' AND ')}`;
     try {
       const res = await this.execute(queryString);
       return res.rows[0];

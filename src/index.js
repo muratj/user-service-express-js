@@ -4,13 +4,15 @@ require('./configs/environment')();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-const UserRoute = require('./api/routes/user.route');
 const logger = require('./api/middlewares/Logger');
+const UserRoute = require('./api/routes/user.route');
+const AuthRoute = require('./api/routes/auth.route');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/user', UserRoute);
+app.use('/auth', AuthRoute);
 app.all('*', (req, res) => res.status(404).json({ "code": 404, "description": "bad request", "message": "endpoint not found" }));
 
 app.listen(PORT, () => {

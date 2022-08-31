@@ -16,6 +16,7 @@ benchmarks/graphs
 
 # development folders
 pgdata/
+*.rest
 
 # log files
 *.logs*
