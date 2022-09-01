@@ -1,3 +1,4 @@
+const Exception = require('../models/Exception');
 const userService = require('../services/user.service');
 
 const createUser = async (req, res) => {
@@ -6,6 +7,10 @@ const createUser = async (req, res) => {
 }
 
 const getAllUsers = async (req, res) => {
+  if (req.auth.role !== 'admin') {
+    const exception = new Exception(403, 'Unauthorized', 'You are not authorized for this call');
+    return res.status(exception.statusCode).json(exception);
+  }
   const users = await userService.findAllUsers();
   res.json(users);
 }
