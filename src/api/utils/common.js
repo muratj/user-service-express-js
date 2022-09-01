@@ -12,7 +12,7 @@ const validatePassword = async (password, hash) => {
 }
 
 const generateAccessToken = async (payload) => {
-  return await jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' });
+  return await jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 }
 
 module.exports = { hashPassword, validatePassword, generateAccessToken }
