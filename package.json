@@ -19,6 +19,8 @@
     "express-jwt": "^7.7.5",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0",
     "winston": "^3.8.1"
   },
   "devDependencies": {
