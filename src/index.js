@@ -7,13 +7,14 @@ const app = express();
 const logger = require('./api/middlewares/Logger');
 const UserRoute = require('./api/routes/user.route');
 const AuthRoute = require('./api/routes/auth.route');
+const { BadRequestException } = require('./api/models/Exception');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/user', UserRoute);
 app.use('/auth', AuthRoute);
-app.all('*', (req, res) => res.status(404).json({ "code": 404, "description": "bad request", "message": "endpoint not found" }));
+app.all('*', (req, res) => res.status(404).json(new BadRequestException("endpoint not found")));
 
 app.listen(PORT, () => {
   console.clear();

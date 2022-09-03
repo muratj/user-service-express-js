@@ -3,6 +3,9 @@ const userService = require('../services/user.service');
 
 const createUser = async (req, res) => {
   const user = await userService.saveUser(req.body);
+  if (user.error) {
+    res.status(user.statusCode).json(user)
+  }
   res.json(user);
 }
 

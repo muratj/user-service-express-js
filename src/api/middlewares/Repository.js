@@ -1,3 +1,4 @@
+const { BadRequestException } = require("../models/Exception");
 const logger = require("./Logger");
 
 class Repository {
@@ -10,13 +11,9 @@ class Repository {
   }
 
   async execute(queryString, values) {
-    try {
-      await this.dbPool.connect();
-      const res = await this.dbPool.query(queryString, values);
-      return res;
-    } catch (err) {
-      logger.error(err);
-    }
+    await this.dbPool.connect();
+    const res = await this.dbPool.query(queryString, values);
+    return res;
   }
 
   async createTableIfNotExists(dbClient, entity) {
@@ -59,7 +56,8 @@ class Repository {
       const res = await this.execute(queryString, values);
       return res.rows[0];
     } catch (err) {
-      logger.error(err);
+      logger.error(err.message);
+      return new BadRequestException(err.message);
     }
   }
 
